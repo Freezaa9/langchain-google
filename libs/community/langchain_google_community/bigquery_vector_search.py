@@ -140,7 +140,7 @@ class BigQueryVectorSearch(VectorStore):
         table_ref = bigquery.TableReference.from_string(self._full_table_id)
         table = self.bq_client.create_table(table_ref, exists_ok=True)
         changed_schema = False
-        schema = table.schema.copy()
+        schema = table.schema.copy() # Copy the schema
         columns = {c.name: c for c in schema}
         if self.doc_id_field not in columns:
             changed_schema = True
